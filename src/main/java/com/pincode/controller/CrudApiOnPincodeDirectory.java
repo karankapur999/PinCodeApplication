@@ -3,15 +3,20 @@ package com.pincode.controller;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.xml.ws.Response;
+
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pincode.model.ModelFromResponseBody;
 import com.pincode.model.MongoModel;
 import com.pincode.model.Values;
 import com.pincode.service.CrudOnAPIService;
@@ -19,6 +24,7 @@ import com.pincode.service.CrudOnAPIService;
 @Controller
 public class CrudApiOnPincodeDirectory {
 
+	ModelFromResponseBody obj = new ModelFromResponseBody();
 	@Autowired
 	CrudOnAPIService injection;
 
@@ -37,7 +43,7 @@ public class CrudApiOnPincodeDirectory {
 				if (Districtname != null && Districtname != "")
 					form.setDistrictname(Districtname);
 				if (Pincode != null && Pincode != 0)
-					form.setPincode(Pincode);
+					form.setPincode((long) Pincode);
 			} catch (Exception e) {
 
 			}
@@ -53,7 +59,7 @@ public class CrudApiOnPincodeDirectory {
 	public @ResponseBody Object deleteDataStatus(
 			@RequestParam(required = false) String state,
 			@RequestParam(required = false) String Districtname,
-			@RequestParam(required = false) Integer Pincode) {
+			@RequestParam(required = false) long Pincode) {
 		try {
 			System.out.println("This is District" + Pincode);
 			Values form = new Values();
@@ -63,8 +69,8 @@ public class CrudApiOnPincodeDirectory {
 					form.setState(state);
 				if (Districtname != null && Districtname != "")
 					form.setDistrictname(Districtname);
-				if (Pincode != null && Pincode != 0)
-					form.setPincode(Pincode);
+				if (Pincode != 0)
+					form.setPincode((long) Pincode);
 			} catch (Exception e) {
 
 			}
@@ -126,4 +132,20 @@ public class CrudApiOnPincodeDirectory {
 			return "Error ";
 		}
 	}
+
+	@RequestMapping(value = "/getPincodeDataCurl", method = RequestMethod.POST)
+	public ArrayList<ArrayList<MongoModel>> addOptional(
+			@RequestBody String requestJSON) throws ParseException {
+		try {
+			System.out.println(injection.getPincodeData(obj
+					.getModelFromResponseBody(requestJSON)));
+			return injection.getPincodeData(obj
+					.getModelFromResponseBody(requestJSON));
+		} catch (Exception e) {
+			System.out.println("Exception" + e);
+			return null;
+		}
+
+	}
+
 }

@@ -3,10 +3,13 @@ package com.pincode.controller;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.xml.ws.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +28,13 @@ public class MainController {
 	@RequestMapping(value = "/fetching", method = RequestMethod.POST)
 	public String fetchData(@ModelAttribute Values form, BindingResult result,
 			Map<String, Object> map) {
+		try {
 
-		map.put("response", injection.getPincodeData(form));
-
+			map.put("response", injection.getPincodeData(form));
+		} catch (Exception e) {
+			System.out.println(e);
+			return "panel";
+		}
 		return "panel";
 	}
 
@@ -53,7 +60,7 @@ public class MainController {
 				if (Districtname != null && Districtname != "")
 					form.setDistrictname(Districtname);
 				if (Pincode != null && Pincode != 0)
-					form.setPincode(Pincode);
+					form.setPincode((long) Pincode);
 			} catch (Exception e) {
 
 			}

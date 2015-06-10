@@ -40,7 +40,7 @@ public class getPincodeData implements servicePincode {
 			mp.put("statename",
 					Pattern.compile(obj.getState(), Pattern.CASE_INSENSITIVE));
 		}
-		if (obj.getPincode() != 0) {
+		if (obj.getPincode() != 0 && obj.getPincode()!=null) {
 			mp.put("pincode", obj.getPincode());
 		}
 

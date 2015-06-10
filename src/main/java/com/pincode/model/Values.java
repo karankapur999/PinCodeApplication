@@ -1,11 +1,11 @@
 package com.pincode.model;
 
 public class Values {
-	int pincode;
+	long pincode;
 	String state, districtname;
 
 	public Values() {
-		this.pincode = 0;
+		this.pincode =  0;
 		this.state = "";
 		this.districtname = "";
 
@@ -27,12 +27,12 @@ public class Values {
 		this.districtname = districtname;
 	}
 
-	public int getPincode() {
+	public Long getPincode() {
 		return pincode;
 	}
 
-	public void setPincode(int pincode) {
-		this.pincode = pincode;
+	public void setPincode(Long long1) {
+		this.pincode = long1;
 	}
 
 }
