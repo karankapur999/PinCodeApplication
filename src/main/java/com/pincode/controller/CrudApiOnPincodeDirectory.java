@@ -133,16 +133,16 @@ public class CrudApiOnPincodeDirectory {
 		}
 	}
 
-	@RequestMapping(value = "/getPincodeDataCurl", method = RequestMethod.POST)
-	public ArrayList<ArrayList<MongoModel>> addOptional(
-			@RequestBody String requestJSON) throws ParseException {
+	@RequestMapping(value = "/getPincodeDataCurl")
+	public ArrayList<MongoModel> addOptional(@RequestBody String requestJSON)
+			throws ParseException {
 		try {
-			System.out.println(injection.getPincodeData(obj
-					.getModelFromResponseBody(requestJSON)));
+			
+			//System.out.println(obj.getModelFromResponseBody(requestJSON));
 			return injection.getPincodeData(obj
 					.getModelFromResponseBody(requestJSON));
 		} catch (Exception e) {
-			System.out.println("Exception" + e);
+			System.out.println("Exception:-" + e);
 			return null;
 		}
 

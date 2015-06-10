@@ -46,9 +46,9 @@ public class CrudOnAPIServiceImpl implements CrudOnAPIService {
 	}
 
 	@Override
-	public ArrayList<ArrayList<MongoModel>> getPincodeData(Values obj) {
-		ArrayList<MongoModel> document;
-		ArrayList<ArrayList<MongoModel>> dbmapping = new ArrayList<ArrayList<MongoModel>>();
+	public ArrayList<MongoModel> getPincodeData(Values obj) {
+		ArrayList<MongoModel> document = null;
+		//ArrayList<ArrayList<MongoModel>> dbmapping = new ArrayList<ArrayList<MongoModel>>();
 		Mongo m = null;
 		try {
 			m = new Mongo();
@@ -82,12 +82,12 @@ public class CrudOnAPIServiceImpl implements CrudOnAPIService {
 
 			}
 
-			dbmapping.add(document);
+			
 
 		}
 		m.close();
 
-		return dbmapping;
+		return document;
 	}
 
 	@Override

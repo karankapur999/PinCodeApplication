@@ -9,6 +9,7 @@ public class ModelFromResponseBody {
 
 	public Values getModelFromResponseBody(String JSON_DATA)
 			throws ParseException {
+		System.out.println("This is jsonData" + JSON_DATA);
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(JSON_DATA);
 		JSONObject object = (JSONObject) obj;
@@ -31,7 +32,10 @@ public class ModelFromResponseBody {
 				form.setPincode((Long) object.get("Pincode"));
 		} catch (Exception e) {
 
+			System.out.println("Exception in Model From Response -:" + e);
 		}
+		System.out.println("the form fields"+form.getDistrictname() + form.getState()
+				+ form.getPincode());
 		return form;
 
 	}
