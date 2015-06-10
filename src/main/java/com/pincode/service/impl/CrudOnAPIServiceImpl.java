@@ -102,7 +102,7 @@ public class CrudOnAPIServiceImpl implements CrudOnAPIService {
 			mongoOps.save(model, object.PERSON_COLLECTION);
 
 		} catch (UnknownHostException e) {
-			System.out.println("Exception>>>" + e + "mvwnb");
+			
 			mongo.close();
 			return "Failure";
 		}
