@@ -132,7 +132,7 @@ public class CrudApiOnPincodeDirectory {
 			return "Error ";
 		}
 	}
-
+	@ResponseBody
 	@RequestMapping(value = "/getPincodeDataCurl")
 	public ArrayList<MongoModel> addOptional(@RequestBody String requestJSON)
 			throws ParseException {
